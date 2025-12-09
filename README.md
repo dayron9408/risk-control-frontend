@@ -1,4 +1,4 @@
-# 📋 Frontend - Sistema de Control de Riesgo
+#  Frontend - Sistema de Control de Riesgo
 
 <img width="2483" height="1320" alt="image" src="https://github.com/user-attachments/assets/03e86e1f-6164-4e5e-9806-d534e9bb6466" />
 
@@ -78,7 +78,7 @@ pnpm install
 | `pnpm start` | Inicia la aplicación construida                          |
 | `pnpm lint`  | Ejecuta ESLint para verificar calidad de código          |
 
-## 🔌 Conexión con el backend
+##  Conexión con el backend
 
 El frontend se comunica con el backend Laravel mediante:
 
@@ -126,7 +126,7 @@ const api = axios.create({
    - Estado de trading (enable/disable)
    - Historial de operaciones
 
-### 🔧 Tipos de reglas soportadas
+###  Tipos de reglas soportadas
 
 1. **Duración mínima de operaciones**
 2. **Consistencia de volumen de trade**
