@@ -1,5 +1,7 @@
 # 📋 Frontend - Sistema de Control de Riesgo
 
+<img width="2483" height="1320" alt="image" src="https://github.com/user-attachments/assets/03e86e1f-6164-4e5e-9806-d534e9bb6466" />
+
 ## 🚀 Descripción
 
 Frontend del sistema de control de riesgo desarrollado con **Next.js 16** y **TypeScript**. Proporciona un panel administrativo para gestionar reglas de riesgo, cuentas, operaciones e incidencias.
