@@ -1,36 +1,177 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📋 Frontend - Sistema de Control de Riesgo
 
-## Getting Started
+## 🚀 Descripción
 
-First, run the development server:
+Frontend del sistema de control de riesgo desarrollado con **Next.js 16** y **TypeScript**. Proporciona un panel administrativo para gestionar reglas de riesgo, cuentas, operaciones e incidencias.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🛠 Tecnologías principales
+
+- **Next.js 16.0.7** - Framework React con App Router
+- **React 19.2.0** - Biblioteca UI
+- **TypeScript** - Tipado estático
+- **Tailwind CSS v4** - Estilos
+- **DaisyUI** - Componentes UI
+- **React Query (@tanstack/react-query)** - Gestión de estado y caché
+- **Axios** - Cliente HTTP
+- **PNPM** - Gestor de paquetes
+
+## 📁 Estructura de carpetas
+
+```
+src/app/
+├── (dashboard)/
+│   ├── accounts/          # Página de cuentas
+│   ├── incidents/         # Página de incidencias
+│   ├── rules/            # Página de reglas
+│   └── page.tsx          # Dashboard principal
+├── layout.tsx            # Layout principal
+├── globals.css           # Estilos globales
+├── api.ts                # Cliente API
+└── types/                # Tipos TypeScript
+
+src/components/
+├── layout/               # Componentes de layout
+├── accounts/             # Componentes de cuentas
+├── incidents/            # Componentes de incidencias
+├── riskrules/            # Componentes de reglas
+└── dashboard/            # Componentes del dashboard
+
+src/hooks/                # Custom hooks
+src/services/             # Servicios y llamadas API
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ⚙️ Configuración
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Prerrequisitos
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Node.js** >= 18.0.0
+- **PNPM** >= 9.0.0
 
-## Learn More
+### Variables de entorno
 
-To learn more about Next.js, take a look at the following resources:
+Crear un archivo `.env.local` en la raíz del proyecto:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```env
+NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
+NEXT_PUBLIC_API_KEY=mW60I7w1FxgUSH2QaGQYroiQouIks5QFa2R4FMi6bTZDFDTjjTp81c2i0neLfn9M
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+> **Nota:** El backend debe estar corriendo en `http://localhost:8000` y aceptar conexiones del frontend.
 
-## Deploy on Vercel
+### Instalación
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Clonar el repositorio
+2. Instalar dependencias:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+pnpm install
+```
+
+## 🚀 Comandos disponibles
+
+| Comando | Descripción |
+|---------|-------------|
+| `pnpm dev` | Inicia servidor de desarrollo en `http://localhost:3000` |
+| `pnpm build` | Construye la aplicación para producción |
+| `pnpm start` | Inicia la aplicación construida |
+| `pnpm lint` | Ejecuta ESLint para verificar calidad de código |
+
+## 🔌 Conexión con el backend
+
+El frontend se comunica con el backend Laravel mediante:
+
+- **URL Base:** `http://localhost:8000/api/v1`
+- **Autenticación:** Header `X-API-KEY` con la clave configurada
+- **Cliente API:** Implementado en `/src/services/api.ts`
+
+Ejemplo de configuración:
+
+```typescript
+// src/services/api.ts
+const api = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  headers: {
+    'X-API-KEY': process.env.NEXT_PUBLIC_API_KEY,
+    'Content-Type': 'application/json',
+  },
+});
+```
+
+## 📋 Funcionalidades implementadas
+
+### 🎯 Módulos del panel
+
+1. **Dashboard**
+   - Vista general del sistema
+   - Métricas y resumen de incidencias
+
+2. **Reglas de Riesgo (Risk Rules)**
+   - Listado de reglas configuradas
+   - Crear/editar reglas con parámetros dinámicos
+   - Asignar acciones a reglas
+   - Activar/desactivar reglas
+
+3. **Incidencias (Incidents)**
+   - Listado de violaciones de reglas
+   - Filtros por usuario, regla o fecha
+   - Detalle de cada incidencia
+
+4. **Cuentas (Accounts)**
+   - Listado de cuentas de trading
+   - Estado de trading (enable/disable)
+   - Historial de operaciones
+
+### 🔧 Tipos de reglas soportadas
+
+1. **Duración mínima de operaciones**
+2. **Consistencia de volumen de trade**
+3. **Cantidad de operaciones en ventana de tiempo**
+
+## 🎨 UI/UX
+
+- **Diseño responsivo** con Tailwind CSS
+- **Componentes modulares** con DaisyUI
+- **Notificaciones toast** con react-toastify
+- **Iconografía** con Heroicons y Lucide React
+- **Formularios accesibles** con Headless UI
+
+## 📊 Gestión de estado
+
+- **React Query** para caché y sincronización con el backend
+- **Server Components** de Next.js para renderizado optimizado
+- **Custom hooks** para lógica reutilizable
+
+## 🚀 Despliegue
+
+### Desarrollo
+
+```bash
+pnpm dev
+```
+
+### Producción
+
+```bash
+pnpm build
+pnpm start
+```
+
+La aplicación estará disponible en `http://localhost:3000` (o el puerto configurado).
+
+## 📝 Notas adicionales
+
+- El frontend no maneja autenticación de usuarios; usa autenticación por API key
+- Todos los endpoints están tipados con TypeScript
+- Se implementó paginación en listados principales
+- El código sigue las convenciones de Next.js App Router
+
+## 🔗 Integración con backend
+
+Asegúrate de que el backend Laravel tenga configurado:
+
+1. CORS para aceptar peticiones desde `http://localhost:3000`
+2. Middleware para validar el header `X-API-KEY`
+3. Las rutas API accesibles bajo `/api/v1/`
+
+
+---
